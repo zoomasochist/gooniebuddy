@@ -1,0 +1,30 @@
+[package]
+name = "goonie_buddy"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# 3D rendering
+three-d = { version = "0.16.3", features = [ "headless" ] }
+three-d-asset = { version = "0.6.0", features = [ "gltf", "png" ] }
+
+# Windowing
+winit = "0.28.7"
+
+# GUI
+egui = { git = "https://github.com/emilk/egui" }
+eframe = { git = "https://github.com/emilk/egui" }  # https://github.com/emilk/egui/pull/3646
+
+# Async
+tokio = { version = "1.34.0", features = [ "full" ] }
+
+# Error management
+anyhow = "1.0.75"
+
+# WinAPI hacks
+raw-window-handle = "0.5.2"
+windows = { version = "0.52.0", features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI",
+]}
