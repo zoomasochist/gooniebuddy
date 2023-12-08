@@ -14,7 +14,7 @@ fn main() {
         ..Default::default()
     };
 
-    eframe::run_native("Goonie Buddy",
+    let _ = eframe::run_native("Goonie Buddy",
         native_options,
         Box::new(|cc| Box::new(MyEguiApp::new(cc)))
     );
@@ -24,13 +24,13 @@ fn main() {
 struct MyEguiApp;
 
 impl MyEguiApp {
-    fn new(cc: &eframe::CreationContext<'_>) -> Self {
+    fn new(_cc: &eframe::CreationContext<'_>) -> Self {
         Self::default()
     }
 
     fn draw_model(&mut self, ui: &mut egui::Ui) {
         let available_size = ui.available_size();
-        let (rect, response) = ui.allocate_exact_size(available_size, egui::Sense::drag());
+        let (rect, _response) = ui.allocate_exact_size(available_size, egui::Sense::drag());
 
         let callback = egui::PaintCallback {
             rect,
@@ -46,7 +46,7 @@ impl MyEguiApp {
 }
 
 impl eframe::App for MyEguiApp {
-   fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {    
+   fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {    
         let resp =
             egui::CentralPanel::default().frame(egui::Frame::none()).show(ctx, |ui| {
                 // ui.style_mut().visuals.extreme_bg_color = egui::Color32::TRANSPARENT;
@@ -135,7 +135,6 @@ impl FrameInput<'_> {
     }
 }
 
-use three_d::*;
 pub struct ThreeDApp {
     context: Context,
     camera: Camera,
@@ -147,7 +146,7 @@ impl ThreeDApp {
         let context = Context::from_gl_context(gl).unwrap();
 
         let mut loaded = three_d_asset::io::load(&[GLB_PATH]).unwrap();
-        let mut cpu_model: CpuModel = loaded.deserialize("glb").unwrap();
+        let cpu_model: CpuModel = loaded.deserialize("glb").unwrap();
         
         let mut model = Model::<PhysicalMaterial>::new(&context, &cpu_model).unwrap();
 
@@ -185,7 +184,7 @@ impl ThreeDApp {
     }
 
     fn fit_camera(&mut self, bounding_box: &AxisAlignedBoundingBox) {
-        let centre = bounding_box.center();
+        // let centre = bounding_box.center();
         let size = bounding_box.size();
         let max_size = size.x.max(size.y).max(size.z);
 

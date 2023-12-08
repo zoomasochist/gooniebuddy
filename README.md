@@ -9,8 +9,6 @@ Windows is the only supported build target, Linux/macOS might work.
 Rust depends on a few Visual Studio components, the individual components
 "Windows 10/11 SDK" and "MSVC vXXX VS 20XX C++ x64/x86 build tools".
 
-The build may also depend on CMake and Ninja, I'm not sure.
-
 Then just "cargo build"
 
 **Note that** as of writing the spawned window is both transparent and lacks decorations, so
